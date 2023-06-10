@@ -1,0 +1,12 @@
+# Create the Shortcut
+$ShortcutFile = "$env:Public\Desktop\Smart Healthcare Platform.lnk" #Shortcut name and creation path
+$TargetFile = 'C:\Program Files\Google\Chrome\Application\Chrome.exe' #Browser Path
+$IconLocation = '\\corp.tatasteel.com\NETLOGON\TMHvishwas.ico, 0'  #Icon location
+$Description = "Launch Google Chrome Browser and open below URL"
+$Arguments = 'https://tmh.tatasteel.co.in -no-default-browser-check' #URL to open in browser
+$WScriptShell = New-Object -ComObject WScript.Shell
+$Shortcut = $WScriptShell.CreateShortcut($ShortcutFile)
+$Shortcut.TargetPath = $TargetFile
+$ShortCut.IconLocation = $IconLocation
+$ShortCut.Arguments = $Arguments
+$Shortcut.Save()
