@@ -1,0 +1,10 @@
+$action = New-ScheduledTaskAction -Execute "Script_path_in_here"
+$settings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit (New-TimeSpan -Minutes 60)
+$trigger = @(
+    $(New-ScheduledTaskTrigger -Daily -At 10AM),
+    $(New-ScheduledTaskTrigger -Daily -At 4PM),
+    $(New-ScheduledTaskTrigger -Daily -At 10PM),
+    $(New-ScheduledTaskTrigger -Daily -At 4AM)
+)
+Register-ScheduledTask -Action $action -TaskName "Task_Name_here" -RunLevel Highest -User SYSTEM
+Set-ScheduledTask -TaskName "Purge Evt Logs" -Trigger $trigger -Settings $settings
